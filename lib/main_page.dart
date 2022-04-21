@@ -31,7 +31,8 @@ class MainPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  getHttp();
+                  // getHttp();
+                  print('It Works');
                 },
                 child: const Text('Test DIO'),
               )
