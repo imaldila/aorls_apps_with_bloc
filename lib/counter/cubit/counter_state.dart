@@ -26,3 +26,11 @@ class CounterDecrement extends CounterState {
   @override
   List<Object?> get props => [countA, countB];
 }
+
+class CounterReset extends CounterState {
+ const CounterReset(int countA, int countB) : super(countA, countB);
+
+  @override
+  
+  List<Object?> get props => [countA, countB];
+}

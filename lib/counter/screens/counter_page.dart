@@ -40,27 +40,28 @@ class CounterPage extends StatelessWidget {
                 onPressRemove: () => counterCubit.decrementB(),
                 onPressAdd: () => counterCubit.incrementB(),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     CircleAvatar(
-              //       child: IconButton(
-              //         onPressed: () {
-              //           context.read<CounterCubit>().decrement();
-              //         },
-              //         icon: const Icon(Icons.remove),
-              //       ),
-              //     ),
-              //     CircleAvatar(
-              //       child: IconButton(
-              //         onPressed: () {
-              //           context.read<CounterCubit>().increment();
-              //         },
-              //         icon: const Icon(Icons.add),
-              //       ),
-              //     ),
-              //   ],
-              // )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircleAvatar(
+                    child: IconButton(
+                      onPressed: () {
+                        // context.read<CounterCubit>().decrement();
+                        context.read<CounterCubit>().resetCounter();
+                      },
+                      icon: const Icon(Icons.remove),
+                    ),
+                  ),
+                  CircleAvatar(
+                    child: IconButton(
+                      onPressed: () {
+                        context.read<CounterCubit>().increment();
+                      },
+                      icon: const Icon(Icons.add),
+                    ),
+                  ),
+                ],
+              )
             ],
           );
         },
