@@ -1,3 +1,4 @@
+import 'package:aorl_apps_bloc/dio/screens/dio_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/nav_button.dart';
@@ -28,6 +29,10 @@ class MainPage extends StatelessWidget {
               const NavButton(
                 label: 'Go To Google Map',
                 destination: MapPage(),
+              ),
+              const NavButton(
+                label: 'Go To DIO Demo',
+                destination: DioScreen(),
               ),
               ElevatedButton(
                 onPressed: () {
