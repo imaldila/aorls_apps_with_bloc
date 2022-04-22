@@ -1,5 +1,7 @@
+import 'package:aorl_apps_bloc/counter/cubit/counter_cubit.dart';
 import 'package:aorl_apps_bloc/dio/screens/dio_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components/nav_button.dart';
 import 'counter/screens/counter_page.dart';
@@ -37,9 +39,11 @@ class MainPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // getHttp();
+                  print('Value A : ${context.read<CounterCubit>().countA}');
+                  print('Value B : ${context.read<CounterCubit>().countB}');
                   print('It Works');
                 },
-                child: const Text('Test DIO'),
+                child: const Text('Test BloC'),
               )
             ],
           ),

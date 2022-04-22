@@ -42,11 +42,15 @@ class _DioScreenState extends State<DioScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Visibility(
+              child: const CircularProgressIndicator(),
+              visible: isLoading,
+            ),
             person != null
                 ? PersonCard(
                     person: person!,
                   )
-                : const CircularProgressIndicator(),
+                : const Text('No Data'),
             const SizedBox(
               height: kPadding,
             ),
@@ -78,10 +82,6 @@ class _DioScreenState extends State<DioScreen> {
                 child: const Text('POST'),
               ),
             ),
-            Visibility(
-              child: CircularProgressIndicator(),
-              visible: isLoading,
-            )
           ],
         ),
       ),
