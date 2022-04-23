@@ -7,6 +7,7 @@ import 'components/nav_button.dart';
 import 'counter/screens/counter_page.dart';
 import 'package:dio/dio.dart';
 
+import 'list/screens/list_demo.dart';
 import 'map/screens/map_page.dart';
 
 class MainPage extends StatelessWidget {
@@ -35,6 +36,10 @@ class MainPage extends StatelessWidget {
               const NavButton(
                 label: 'Go To DIO Demo',
                 destination: DioScreen(),
+              ),
+              const NavButton(
+                label: 'Go To List Demo',
+                destination: CollapsingList(),
               ),
               ElevatedButton(
                 onPressed: () {
