@@ -1,4 +1,5 @@
 import 'package:aorl_apps_bloc/counter/cubit/counter_cubit.dart';
+import 'package:aorl_apps_bloc/list/bloc/post_bloc.dart';
 import 'package:aorl_apps_bloc/main_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<CounterCubit>(
           create: (_) => CounterCubit(),
+        ),
+        BlocProvider<PostBloc>(
+          create: (context) => PostBloc()..add(const PostEvent()),
         ),
       ],
       child: MaterialApp(

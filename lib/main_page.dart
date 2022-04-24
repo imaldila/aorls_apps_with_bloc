@@ -43,7 +43,7 @@ class MainPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // getHttp();
+                  getHttp();
                   print('Value A : ${context.read<CounterCubit>().countA}');
                   print('Value B : ${context.read<CounterCubit>().countB}');
                   print('It Works');
@@ -59,8 +59,8 @@ class MainPage extends StatelessWidget {
 
   void getHttp() async {
     try {
-      var response = await Dio().get('http://www.google.com');
-      print(response);
+      var response = await Dio().get('https://reqres.in/api/users?page=2');
+      print(response.data);
     } catch (e) {
       print(e);
     }

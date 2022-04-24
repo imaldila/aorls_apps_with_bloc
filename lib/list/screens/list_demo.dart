@@ -1,5 +1,8 @@
+import 'package:aorl_apps_bloc/list/bloc/post_bloc.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({
@@ -76,18 +79,34 @@ class CollapsingList extends StatelessWidget {
               maxHeight: 150.0,
               child: Container(
                   color: Colors.amber,
-                  child: Center(child: Text('headerText'))),
+                  child: const Center(child: const Text('headerText'))),
             ),
           ),
-          SliverFixedExtentList(
-              itemExtent: 50.0,
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  child: Text('List item $index'),
-                );
-              }, childCount: 100)),
+          BlocBuilder<PostBloc, PostState>(
+            builder: (context, state) {
+              return SliverFixedExtentList(
+                  itemExtent: 50.0,
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    // return Container(
+                    //   alignment: Alignment.center,
+                    //   child: Text('List item $index'),
+                    // );
+                    if (state is PostUnInitialized) {
+                      return const Center(
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    } else {
+                      PostLoaded postLoaded = state as PostLoaded;
+                      return Text(postLoaded.posts[index].email);
+                    }
+                  }, childCount: 10));
+            },
+          ),
         ],
       ),
     );
