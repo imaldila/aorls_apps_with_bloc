@@ -12,7 +12,7 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
-    int page = 2;
+    String page = '';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Post Page'),
@@ -20,7 +20,7 @@ class _PostPageState extends State<PostPage> {
       body: const PostBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          PostAPI.fetchPost(page.toString());
+          PostAPI.fetchPost(page + 1.toString());
           print(page);
         },
         child: const Icon(Icons.add),
