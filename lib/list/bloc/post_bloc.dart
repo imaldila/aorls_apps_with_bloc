@@ -9,7 +9,18 @@ part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc() : super(PostInitial()) {
-    // ignore: void_checks
+    on<PostEvent>((event, emit) async {
+      if (event is PostLoaded) {
+        emit(await _mapPostToState(state));
+      }
+
+      if (event is PostRefresh) {
+        emit(PostInitial());
+
+        emit(await _mapPostToState(state));
+      }
+    });
+
     // on<PostEvent>((event, emit) async* {
     //   if (event is PostLoaded) {
     //     yield await _mapPostToState(state);
@@ -21,7 +32,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     //     yield await _mapPostToState(state);
     //   }
     // });
-    on<PostEvent>((event, emit) => _mapPostToState(state));
+    // on<PostEvent>((event, emit) => _mapPostToState(state));
   }
 
   Future<PostState> _mapPostToState(PostState state) async {
