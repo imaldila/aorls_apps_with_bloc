@@ -10,11 +10,13 @@ class Post extends Equatable {
   final int id;
   final String email, name;
 
-  factory Post.fromJson(dynamic json,) {
+  factory Post.fromJson(
+    dynamic json,
+  ) {
     return Post(
       id: json['id'],
       email: json['email'],
-      name: json['first_name'],
+      name: json['first_name'] + ' ' + json['last_name'],
     );
   }
 

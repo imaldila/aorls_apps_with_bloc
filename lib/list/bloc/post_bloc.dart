@@ -10,11 +10,18 @@ part 'post_state.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc() : super(PostInitial()) {
     // ignore: void_checks
-    on<PostEvent>((event, emit) async* {
-      if (event is PostLoaded) {
-        yield await _mapPostToState(state);
-      }
-    });
+    // on<PostEvent>((event, emit) async* {
+    //   if (event is PostLoaded) {
+    //     yield await _mapPostToState(state);
+    //   }
+
+    //   if (event is PostRefresh) {
+    //     yield PostInitial();
+
+    //     yield await _mapPostToState(state);
+    //   }
+    // });
+    on<PostEvent>((event, emit) => _mapPostToState(state));
   }
 
   Future<PostState> _mapPostToState(PostState state) async {
@@ -22,17 +29,35 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
     try {
       if (state is PostInitial) {
-        posts = await PostAPI.fetchPost('2');
+        posts = await PostAPI.fetchPost('1');
         return PostLoaded(posts: posts);
       }
-
       PostLoaded postLoaded = state as PostLoaded;
-      posts = await PostAPI.fetchPost('2');
+      posts = await PostAPI.fetchPost('1');
       return posts.isEmpty
-          ? state.copyWith(hasReachedMax: true)
-          : state.copyWith(posts: postLoaded.posts + posts);
-    } catch (_) {
+          ? postLoaded.copyWith(hasReachedMax: true)
+          : postLoaded.copyWith(posts: postLoaded.posts + posts);
+    } on Exception {
       return PostError();
     }
   }
+
+  // Future<PostState> _mapPostToState(PostState state) async {
+  //   List<Post> posts;
+
+  //   try {
+  //     if (state is PostInitial) {
+  //       posts = await PostAPI.fetchPost('2');
+  //       return PostLoaded(posts: posts);
+  //     }
+
+  //     PostLoaded postLoaded = state as PostLoaded;
+  //     posts = await PostAPI.fetchPost('2');
+  //     return posts.isEmpty
+  //         ? postLoaded.copyWith(hasReachedMax: true)
+  //         : postLoaded.copyWith(posts: postLoaded.posts + posts);
+  //   } catch (_) {
+  //     return PostError();
+  //   }
+  // }
 }

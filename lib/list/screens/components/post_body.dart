@@ -14,7 +14,7 @@ class PostBody extends StatefulWidget {
 }
 
 class _PostBodyState extends State<PostBody> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   late PostBloc _postBloc;
 
   @override
@@ -28,6 +28,7 @@ class _PostBodyState extends State<PostBody> {
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
+        print(state);
         // if Post is Initial
         if (state is PostInitial) {
           return const Center(
@@ -41,15 +42,20 @@ class _PostBodyState extends State<PostBody> {
             return const Text('No Data');
           }
 
-          return PostList(
-            scrollController: _scrollController,
-            state: state,
+          return RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: PostList(
+              scrollController: _scrollController,
+              state: state,
+            ),
           );
         }
 
         // if Post is Error
 
-        return Container();
+        return const Center(
+          child: Text('Error Fetched Posts'),
+        );
       },
     );
   }
@@ -65,5 +71,9 @@ class _PostBodyState extends State<PostBody> {
     double currentScroll = _scrollController.position.pixels;
 
     if (currentScroll == maxScroll) _postBloc.add(PostFetched());
+  }
+
+  Future<void> _onRefresh() async {
+    _postBloc..add(PostRefresh());
   }
 }
