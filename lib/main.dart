@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           create: (_) => CounterCubit(),
         ),
         BlocProvider<PostBloc>(
-          create: (context) => PostBloc()..add(const PostEvent()),
+          create: (context) => PostBloc()..add(PostFetched()),
         ),
       ],
       child: MaterialApp(

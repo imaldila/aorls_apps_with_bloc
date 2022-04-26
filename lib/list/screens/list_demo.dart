@@ -92,18 +92,18 @@ class CollapsingList extends StatelessWidget {
                     //   alignment: Alignment.center,
                     //   child: Text('List item $index'),
                     // );
-                    if (state is PostUnInitialized) {
-                      return const Center(
-                        child: SizedBox(
-                          width: 30,
-                          height: 30,
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    } else {
-                      PostLoaded postLoaded = state as PostLoaded;
-                      return Text(postLoaded.posts[index].email);
-                    }
+                    // if (state is PostUnInitialized) {
+                    //   return const Center(
+                    //     child: SizedBox(
+                    //       width: 30,
+                    //       height: 30,
+                    //       child: CircularProgressIndicator(),
+                    //     ),
+                    //   );
+                    // } else {
+                    //   PostLoaded postLoaded = state as PostLoaded;
+                    //   return Text(postLoaded.posts[index].email);
+                    // }
                   }, childCount: 10));
             },
           ),

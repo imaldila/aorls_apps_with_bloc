@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../models/post.dart';
+import '../models/post-backup.dart';
 
 abstract class ServicesList {
   static Future<List<Post?>> getById(int pages) async {

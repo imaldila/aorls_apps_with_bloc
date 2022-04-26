@@ -1,5 +1,6 @@
 import 'package:aorl_apps_bloc/counter/cubit/counter_cubit.dart';
 import 'package:aorl_apps_bloc/dio/screens/dio_screen.dart';
+import 'package:aorl_apps_bloc/list/screens/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,11 +40,11 @@ class MainPage extends StatelessWidget {
               ),
               const NavButton(
                 label: 'Go To List Demo',
-                destination: CollapsingList(),
+                destination: PostPage(),
               ),
               ElevatedButton(
                 onPressed: () {
-                  getHttp();
+                  // getHttp();
                   print('Value A : ${context.read<CounterCubit>().countA}');
                   print('Value B : ${context.read<CounterCubit>().countB}');
                   print('It Works');

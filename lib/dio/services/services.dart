@@ -5,6 +5,7 @@ abstract class Services {
   static Future<Person?> getById(int id) async {
     try {
       var response = await Dio().get('https://reqres.in/api/users/$id');
+      // var response = await Dio().get('https://reqres.in/api/users?page=$id');
 
       if (response.statusCode == 200) {
         return Person(
