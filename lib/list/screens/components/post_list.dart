@@ -15,11 +15,14 @@ class PostList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: state.hasReachedMax ? state.posts.length : state.posts.length + 1,
-      separatorBuilder: (context, indext) => const Divider(thickness: 1,) ,
+      itemCount:
+          state.hasReachedMax ? state.posts.length : state.posts.length + 1,
+      separatorBuilder: (context, indext) => const Divider(
+        thickness: 1,
+      ),
       itemBuilder: (context, index) {
-        if(index > state.posts.length)  return const BottomLoader();
-        
+        if (index > state.posts.length) return const BottomLoader();
+
         return ListTile(
           title: Text(state.posts[index].name),
         );

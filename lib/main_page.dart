@@ -1,6 +1,7 @@
 import 'package:aorl_apps_bloc/counter/cubit/counter_cubit.dart';
 import 'package:aorl_apps_bloc/dio/screens/dio_screen.dart';
 import 'package:aorl_apps_bloc/list/screens/post_page.dart';
+import 'package:aorl_apps_bloc/list_api/screens/list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,12 +43,16 @@ class MainPage extends StatelessWidget {
                 label: 'Go To List Demo',
                 destination: PostPage(),
               ),
+              const NavButton(
+                label: 'Go To List API Screen',
+                destination: ListScreen(),
+              ),
               ElevatedButton(
                 onPressed: () {
-                  // getHttp();
-                  print('Value A : ${context.read<CounterCubit>().countA}');
-                  print('Value B : ${context.read<CounterCubit>().countB}');
-                  print('It Works');
+                  getHttp();
+                  // print('Value A : ${context.read<CounterCubit>().countA}');
+                  // print('Value B : ${context.read<CounterCubit>().countB}');
+                  // print('It Works');
                 },
                 child: const Text('Test BloC'),
               )
@@ -61,7 +66,7 @@ class MainPage extends StatelessWidget {
   void getHttp() async {
     try {
       var response = await Dio().get('https://reqres.in/api/users?page=2');
-      print(response.data);
+      print(response.data['data']);
     } catch (e) {
       print(e);
     }

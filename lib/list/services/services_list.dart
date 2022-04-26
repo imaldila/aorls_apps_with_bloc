@@ -10,7 +10,7 @@ abstract class ServicesList {
       var responses =
           await Dio().get('https://reqres.in/api/users?page=$pages');
 
-      var jsonObject = jsonDecode(responses.data) as List;
+      var jsonObject = jsonDecode(responses.data)['data'] as List;
 
       return jsonObject
           .map<Post>(

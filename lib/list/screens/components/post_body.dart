@@ -64,6 +64,6 @@ class _PostBodyState extends State<PostBody> {
     double maxScroll = _scrollController.position.maxScrollExtent;
     double currentScroll = _scrollController.position.pixels;
 
-    if (currentScroll == maxScroll) _postBloc..add(PostFetched());
+    if (currentScroll == maxScroll) _postBloc.add(PostFetched());
   }
 }
