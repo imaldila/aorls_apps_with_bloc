@@ -11,7 +11,23 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   PostBloc() : super(PostInitial()) {
     on<PostEvent>((event, emit) async {
       emit(await _mapPostToState(state));
+
+      if (event is PostLoaded) {
+        emit(await _mapPostToState(state));
+      }
+
+      if (event is PostRefresh) {
+        emit(PostInitial());
+
+        emit(await _mapPostToState(state));
+      }
     });
+
+    // on<PostIndex>((event, emit) {
+    //   emit(state is PostLoaded
+    //       ? PostLoaded(state.index + event.index)
+    //       : PostLoaded(event.index));
+    // });
 
     // ignore: void_checks
     // on<PostEvent>((event, emit) async* {
@@ -34,7 +50,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     try {
       if (state is PostInitial) {
         posts = await PostAPI.fetchPost('1');
-        return PostLoaded(posts: posts);
+        return PostLoaded(
+          posts: posts,
+        );
       }
       PostLoaded postLoaded = state as PostLoaded;
       posts = await PostAPI.fetchPost('1');

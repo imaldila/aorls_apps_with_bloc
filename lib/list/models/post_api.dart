@@ -27,7 +27,7 @@ class PostAPI {
   // }
 
   static Future<List<Post>> fetchPost(String page) async {
-    String apiURL = 'https://reqres.in/api/users?page=' + page;
+    String apiURL = 'https://reqres.in/api/users?page=$page';
 
     var apiResult = await http.get(Uri.parse(apiURL));
 
