@@ -51,7 +51,7 @@ class MainPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // getHttp();
-                  print(context.read<PostBloc>());
+                  // print(context.read<PostBloc>());
                   // print('Value A : ${context.read<CounterCubit>().countA}');
                   // print('Value B : ${context.read<CounterCubit>().countB}');
                   print('It Works');

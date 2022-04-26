@@ -16,7 +16,7 @@ class PostList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount:
-          state.hasReachedMax ? state.posts.length : state.posts.length + 1,
+          state.hasReachedMax ? state.posts.length : state.posts.length,
       separatorBuilder: (context, indext) => const Divider(
         thickness: 1,
       ),

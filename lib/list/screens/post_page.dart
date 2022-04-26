@@ -46,8 +46,8 @@ class _PostBodyState extends State<PostBody> {
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
-        print(state);
-        // if Post is Initial
+        // print(state);
+
         if (state is PostInitial) {
           return const Center(
             child: CircularProgressIndicator(),

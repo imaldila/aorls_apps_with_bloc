@@ -31,6 +31,7 @@ class _ListScreenState extends State<ListScreen> {
                     for (int i = 0; i < users.length; i++) {
                       output = output + '[ ' + users[i].name + ' ]';
                       setState(() {});
+                      print('$output');
                     }
                   },
                 );
